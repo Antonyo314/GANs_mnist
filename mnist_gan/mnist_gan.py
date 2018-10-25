@@ -1,13 +1,11 @@
-from keras.datasets import mnist
-from keras.layers import Input, Dense, Reshape, Flatten
-from keras.layers import BatchNormalization, ZeroPadding2D
-from keras.layers.advanced_activations import LeakyReLU
-from keras.models import Sequential, Model
-from keras.optimizers import Adam
-
 import matplotlib.pyplot as plt
-
 import numpy as np
+from keras.datasets import mnist
+from keras.layers import BatchNormalization
+from keras.layers import Input, Dense, Reshape, Flatten
+from keras.layers.advanced_activations import LeakyReLU
+from keras.models import Model
+from keras.optimizers import Adam
 
 img_rows = 28
 img_cols = 28
@@ -15,12 +13,8 @@ channels = 1
 img_shape = (img_rows, img_cols, channels)
 latent_dim = 100
 batch_size = 32
-epochs = 30000
-sample_interval = 200
-
-
-# os.chdir(os.getcwd())
-# print(os.getcwd())
+epochs = 100_000
+sample_interval = 500
 
 
 def get_generator():
