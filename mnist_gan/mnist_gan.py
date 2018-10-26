@@ -17,7 +17,7 @@ epochs = 100_000
 sample_interval = 500
 
 
-def get_generator():
+def build_generator():
     input_noise = Input(shape=(latent_dim,))
 
     x = Dense(256)(input_noise)
@@ -38,7 +38,7 @@ def get_generator():
     return Model(input_noise, img)
 
 
-def get_discriminator():
+def build_discriminator():
     img = Input(shape=img_shape)
     x = Flatten()(img)
 
@@ -52,7 +52,7 @@ def get_discriminator():
     return Model(img, x)
 
 
-def get_combined():
+def build_combined():
     z = Input(shape=(latent_dim,))
     img = generator(z)
     validity = discriminator(img)
@@ -80,10 +80,10 @@ def sample_images(epoch):
 
 optimizer = Adam(0.0002, 0.5)
 
-generator = get_generator()
-discriminator = get_discriminator()
+generator = build_generator()
+discriminator = build_discriminator()
 
-combined = get_combined()
+combined = build_combined()
 
 discriminator.compile(loss='binary_crossentropy',
                       optimizer=optimizer,
@@ -132,3 +132,5 @@ for epoch in range(epochs):
 
     if epoch % sample_interval == 0:
         sample_images(epoch)
+
+generator.save('saved_models/generator.h5')
