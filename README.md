@@ -1,4 +1,4 @@
-# simple_GANs
+# simple GANs examples with Keras 
 
 In this project I trained simple GANs with MNIST dataset.
 After training on 100 000 epochs (mnist_gan/mnist_gan.py script) I have such results:
